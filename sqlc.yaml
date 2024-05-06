@@ -1,0 +1,19 @@
+version: "2"
+sql:
+  - schema: "./infraestructure/db/migrations"
+    queries: "./infraestructure/db/query"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "repos"
+        out: "./infraestructure/db/repos"
+        emit_interface: true
+        emit_json_tags: true
+        overrides:
+          - db_type: "uuid"
+            go_type: 
+              import: "github.com/google/uuid"
+              type: "UUID"
+          - db_type: "pg_catalog.timestamp"
+            go_type: 
+              type: "time.Time"

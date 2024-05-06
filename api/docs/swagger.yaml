@@ -1,0 +1,129 @@
+definitions:
+  contact.AddContact:
+    properties:
+      email:
+        type: string
+      lastname:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  contact.UpdateContact:
+    properties:
+      email:
+        type: string
+      lastname:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  repos.Contact:
+    properties:
+      create_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      lastname:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Contact API
+  title: Contact API
+  version: "1.0"
+paths:
+  /contact:
+    post:
+      description: Add a contact
+      parameters:
+      - description: Add a contact request
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/contact.AddContact'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/repos.Contact'
+      summary: Add Contact
+      tags:
+      - Contact
+  /contact/{id}:
+    delete:
+      description: Delete a contact
+      parameters:
+      - description: The id of the contact
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: Delete
+      tags:
+      - Contact
+    get:
+      description: Get a contact by id
+      parameters:
+      - description: The id of the contact
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: GetByID
+      tags:
+      - Contact
+    put:
+      description: Update
+      parameters:
+      - description: The id of the contact
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Add a contact request
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/contact.UpdateContact'
+      responses:
+        "200":
+          description: OK
+      summary: Update
+      tags:
+      - Contact
+  /contacts:
+    get:
+      description: Get all the contacts
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/repos.Contact'
+            type: array
+      summary: GetAll
+      tags:
+      - Contact
+swagger: "2.0"
